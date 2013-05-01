@@ -1,11 +1,3 @@
-/**
- * Created with IntelliJ IDEA.
- * User: carmitage
- * Date: 28/04/13
- * Time: 17:22
- * To change this template use File | Settings | File Templates.
- */
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
