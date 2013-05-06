@@ -3,11 +3,22 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-        >
+              android:clickable="false"
+              android:focusable="false"
+              android:focusableInTouchMode="false"
+              android:importantForAccessibility="no">
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World, EmptySea"
+            android:text="You have 1 ship to place"
             />
+
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView"
+            android:background="@drawable/own_sea"
+            />
+
 </LinearLayout>
 
