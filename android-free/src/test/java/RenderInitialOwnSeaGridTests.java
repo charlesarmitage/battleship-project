@@ -1,3 +1,6 @@
+import com.cjra.battleship_project.FleetDeploymentView;
+import com.cjra.battleship_project.OwnSeaGridController;
+import com.cjra.battleship_project.OwnSeaGridModel;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Test;
@@ -8,7 +11,7 @@ public class RenderInitialOwnSeaGridTests {
     @Test
     public void playerHasOneShipToPlace(){
         final OwnSeaGridModel model = mockery.mock(OwnSeaGridModel.class);
-        final OwnSeaGridView view = mockery.mock(OwnSeaGridView.class);
+        final FleetDeploymentView view = mockery.mock(FleetDeploymentView.class);
         final OwnSeaGridController controller = new OwnSeaGridController(model, view);
 
         mockery.checking(new Expectations(){
