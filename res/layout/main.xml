@@ -10,7 +10,7 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="You have 1 ship to place"
+            android:text="You have 0 ships to place"
             android:textColor="#FFF"
             android:background="@drawable/own_sea"
 
