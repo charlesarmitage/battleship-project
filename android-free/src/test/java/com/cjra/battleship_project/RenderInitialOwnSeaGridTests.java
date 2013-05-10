@@ -1,3 +1,5 @@
+package com.cjra.battleship_project;
+
 import com.cjra.battleship_project.FleetDeploymentView;
 import com.cjra.battleship_project.OwnSeaGridController;
 import com.cjra.battleship_project.OwnSeaGridModel;

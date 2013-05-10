@@ -2,9 +2,6 @@ package com.cjra.battleship_project;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.cjra.battleship_project.FleetDeploymentView;
-import com.cjra.battleship_project.OwnSeaGridController;
-import com.cjra.battleship_project.OwnSeaGridModel;
 import com.example.battleship_project.R;
 
 /**
