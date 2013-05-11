@@ -3,31 +3,20 @@ package com.cjra.battleship_project;
 import com.cjra.battleship_project.FleetDeploymentView;
 import com.cjra.battleship_project.OwnSeaGridController;
 import com.cjra.battleship_project.OwnSeaGridModel;
-import org.jmock.Expectations;
-import org.jmock.Mockery;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
 
 public class RenderInitialOwnSeaGridTests {
-    private Mockery mockery = new Mockery();
 
     @Test
     public void playerHasOneShipToPlace(){
-        final OwnSeaGridModel model = mockery.mock(OwnSeaGridModel.class);
-        final FleetDeploymentView view = mockery.mock(FleetDeploymentView.class);
-        final OwnSeaGridController controller = new OwnSeaGridController(model, view);
+        FleetDeploymentView fleetView = mock(FleetDeploymentView.class);
+        OwnSeaGridModel ownSeaModel = mock(OwnSeaGridModel.class);
+        when(ownSeaModel.numberOfAvailableShips()).thenReturn(1);
 
-        mockery.checking(new Expectations(){
-            {
-                allowing(model).numberOfAvailableShips();
-                will(returnValue(1));
+        final OwnSeaGridController controller = new OwnSeaGridController(ownSeaModel, fleetView);
+        controller.render();
 
-                oneOf(view).setNumberOfAvailableShips(1);
-            }
-        });
-
-       controller.render();
-
-       mockery.assertIsSatisfied();
-       //assertEquals(1, 2);
+        verify(fleetView).setNumberOfAvailableShips(1);
     }
 }

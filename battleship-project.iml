@@ -20,6 +20,9 @@
     <orderEntry type="jdk" jdkName="Android SDK" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="android-free" />
+    <orderEntry type="library" scope="TEST" name="robolectric-2.0-rc1" level="project" />
+    <orderEntry type="library" scope="TEST" name="mockito-all-1.9.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="junit-4.11" level="project" />
   </component>
 </module>
 
