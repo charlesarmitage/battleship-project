@@ -2,7 +2,8 @@ package com.cjra.battleship_project;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.example.battleship_project.R;
+import android.widget.TextView;
+import com.cjra.battleship_project.R;
 
 /**
  * Default FleetDeploymentActivity activity
@@ -31,11 +32,15 @@ public class FleetDeploymentActivity extends Activity implements FleetDeployment
 
     @Override
     public void setNumberOfAvailableShips(int numberOfAvailableShips) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        String shipsNoun = numberOfAvailableShips != 1 ? " ships " : " ship ";
+        String shipsText = "You have " + numberOfAvailableShips + shipsNoun +  "to place.\n";
+        shipsText += "Touch grid below to place ships.";
+
+        TextView shipCountText = (TextView)findViewById( R.id.ship_count );
+        shipCountText.setText(shipsText);
     }
 
     @Override
     public void displayFleetGrid() {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }
