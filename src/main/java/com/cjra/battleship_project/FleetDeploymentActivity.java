@@ -3,7 +3,6 @@ package com.cjra.battleship_project;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
-import com.cjra.battleship_project.R;
 
 /**
  * Default FleetDeploymentActivity activity
