@@ -41,9 +41,9 @@ public class FleetDeploymentActivity extends Activity
 
     @Override
     public void setNumberOfAvailableShips(int numberOfAvailableShips) {
-        String shipsNoun = numberOfAvailableShips != 1 ? " ships " : " ship ";
-        String shipsText = "You have " + numberOfAvailableShips + shipsNoun +  "to place.";
-        //shipsText += "Touch grid below to place ships.";
+        String shipsNoun = numberOfAvailableShips != 1 ? "ships" : "ship";
+        String shipsText = String.format("You have %d %s to place.\n", numberOfAvailableShips, shipsNoun);
+        shipsText += "Touch grid to place ships.";
 
         TextView shipCountText = (TextView)findViewById( R.id.ship_count );
         shipCountText.setText(shipsText);

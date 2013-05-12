@@ -19,6 +19,7 @@ public class FleetDeploymentActivityTests {
 
         TextView text = (TextView)activity.findViewById(R.id.ship_count);
 
-        assertEquals("You have 12 ships to place.", text.getText());
+        assertEquals("You have 12 ships to place.\n" +
+                    "Touch grid to place ships.", text.getText());
     }
 }
