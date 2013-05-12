@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="robolectric-2.0-rc1-jar-with-dependencies">
+  <library name="robolectric-2.0-rc1">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/src/libs/test/robolectric-2.0-rc1-jar-with-dependencies.jar!/" />
     </CLASSES>
