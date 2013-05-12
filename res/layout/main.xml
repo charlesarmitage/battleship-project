@@ -5,17 +5,15 @@
               android:layout_height="fill_parent"
               android:clickable="false"
               android:focusable="false"
-              android:focusableInTouchMode="false"
-              android:importantForAccessibility="no">
+              android:focusableInTouchMode="false">
     <TextView
             android:id="@+id/ship_count"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="You have 0 ships to place"
-            android:textColor="#FFF"
+            android:textColor="#FFFFFF"
             android:background="@drawable/own_sea"
-
-            />
+             />
     <TextView
             android:id="@+id/debug_text"
             android:layout_width="fill_parent"
@@ -23,7 +21,6 @@
             android:text="Touch coords: "
             android:textColor="#FFF"
             android:background="@drawable/own_sea"
-
             />
     <ImageView
             android:layout_width="fill_parent"
