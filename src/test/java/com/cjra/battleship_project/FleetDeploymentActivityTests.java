@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class FleetDeploymentActivityTests {
 
     @Test
-    public void RendersBattleshipGameWhenResumed(){
+    public void DisplaysCorrectNumberOfShipsTextForDeployment(){
         FleetDeploymentActivity activity = new FleetDeploymentActivity();
         activity.onCreate(null);
 
