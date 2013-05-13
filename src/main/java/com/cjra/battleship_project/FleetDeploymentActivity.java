@@ -41,6 +41,11 @@ public class FleetDeploymentActivity extends Activity
 
     @Override
     public void setNumberOfAvailableShips(int numberOfAvailableShips) {
+        if(numberOfAvailableShips < 0)
+            throw new ImplementationError(
+                    new IllegalArgumentException("Negative number of ships is invalid.")
+            );
+
         String shipsNoun = numberOfAvailableShips != 1 ? "ships" : "ship";
         String shipsText = String.format("You have %d %s to place.\n", numberOfAvailableShips, shipsNoun);
         shipsText += "Touch grid to place ships.";

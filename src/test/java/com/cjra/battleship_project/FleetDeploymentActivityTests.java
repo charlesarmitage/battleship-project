@@ -22,4 +22,13 @@ public class FleetDeploymentActivityTests {
         assertEquals("You have 12 ships to place.\n" +
                     "Touch grid to place ships.", text.getText());
     }
+
+
+    @Test(expected = ImplementationError.class)
+    public void ThrowsWhenNegativeNumberOfShipsAvailable(){
+        FleetDeploymentActivity activity = new FleetDeploymentActivity();
+        activity.onCreate(null);
+
+        activity.setNumberOfAvailableShips(-1);
+    }
 }
