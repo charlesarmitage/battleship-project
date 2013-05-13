@@ -15,12 +15,16 @@ public class FleetDeploymentActivity extends Activity
         View.OnTouchListener,
         View.OnLayoutChangeListener {
 
-    private OwnSeaGridController battleshipGame;
+    private RendersView battleshipGame;
     private OwnSeaGridModel seaGrids;
 
     public FleetDeploymentActivity(){
         seaGrids = new NormalSeaGrids();
         battleshipGame = new OwnSeaGridController(seaGrids, this);
+    }
+
+    public FleetDeploymentActivity(RendersView view) {
+        battleshipGame = view;
     }
 
     @Override

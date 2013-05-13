@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricTestRunner.class)
 public class FleetDeploymentActivityTests {
@@ -30,5 +32,16 @@ public class FleetDeploymentActivityTests {
         activity.onCreate(null);
 
         activity.setNumberOfAvailableShips(-1);
+    }
+
+    @Test
+    public void RendersGameWhenActivityResumed(){
+        RendersView view = mock(RendersView.class);
+        FleetDeploymentActivity activity = new FleetDeploymentActivity(view);
+
+        activity.onCreate(null);
+        activity.onResume();
+
+        verify(view).render();
     }
 }

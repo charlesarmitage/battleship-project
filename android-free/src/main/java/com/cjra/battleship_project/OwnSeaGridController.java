@@ -1,6 +1,6 @@
 package com.cjra.battleship_project;
 
-public class OwnSeaGridController {
+public class OwnSeaGridController implements RendersView {
     private OwnSeaGridModel model;
     private FleetDeploymentView view;
 
