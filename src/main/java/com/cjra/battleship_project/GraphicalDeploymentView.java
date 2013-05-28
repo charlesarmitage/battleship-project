@@ -23,22 +23,15 @@ public class GraphicalDeploymentView extends ImageView {
     }
 
     private int measureSquare(int measureSpec) {
-        int result = 0;
         int specMode = MeasureSpec.getMode(measureSpec);
-        int specSize = MeasureSpec.getSize(measureSpec);
+        mode = MeasureSpec.toString(specMode);
 
-        if (specMode == MeasureSpec.EXACTLY) {
-            result = specSize;
-            mode = "EXACTLY";
-        } else {
-            mode = "OTHER";
+        int specSize = MeasureSpec.getSize(measureSpec);
+        int result = specSize;
+
+        if (specMode == MeasureSpec.UNSPECIFIED || specMode == MeasureSpec.AT_MOST) {
             cellSize = ((specSize - 80) / 10);
             result = (cellSize * 10) + (2 * GRID_BOARDER);
-
-            if (specMode == MeasureSpec.AT_MOST) {
-                result = Math.min(result, specSize);
-                mode = "AT MOST";
-            }
         }
 
         return result;
