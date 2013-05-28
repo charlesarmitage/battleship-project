@@ -9,7 +9,7 @@ import android.widget.ImageView;
  * Android view for fleet deployment.
  */
 public class GraphicalDeploymentView extends ImageView {
-    private static final int GRID_BOARDER = 5;
+    private static final int GRID_BOARDER = 10;
     private String mode = "";
     private int cellSize = 0;
 
@@ -33,7 +33,7 @@ public class GraphicalDeploymentView extends ImageView {
         } else {
             mode = "OTHER";
             cellSize = ((specSize - 80) / 10);
-            result = (cellSize * 10);
+            result = (cellSize * 10) + (2 * GRID_BOARDER);
 
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
@@ -59,7 +59,8 @@ public class GraphicalDeploymentView extends ImageView {
 
     private void addHorizontaLines(Path gridLines) {
         RectF horizontalLine = new RectF(0, 0, getMeasuredWidth(), 2);
-        for(int i = 0; i < 10; i++){
+        horizontalLine.offset(0, GRID_BOARDER);
+        for(int i = 0; i < 9; i++){
             horizontalLine.offset(0, cellSize);
             gridLines.addRect(horizontalLine, Path.Direction.CW);
         }
@@ -67,7 +68,8 @@ public class GraphicalDeploymentView extends ImageView {
 
     private void addVerticalLines(Path gridLines) {
         RectF verticalLine = new RectF(0, 0, 2, getMeasuredWidth());
-        for(int i = 0; i < 10; i++){
+        verticalLine.offset(GRID_BOARDER, 0);
+        for(int i = 0; i < 9; i++){
             verticalLine.offset(cellSize, 0);
             gridLines.addRect(verticalLine, Path.Direction.CW);
         }
