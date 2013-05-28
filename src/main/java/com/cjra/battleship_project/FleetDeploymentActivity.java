@@ -32,7 +32,7 @@ public class FleetDeploymentActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        ImageView seaGrid = (ImageView)findViewById(R.id.imageView);
+        ImageView seaGrid = (ImageView)findViewById(R.id.fleet_deployment);
         seaGrid.addOnLayoutChangeListener(this);
         seaGrid.setOnTouchListener(this);
     }
@@ -76,8 +76,8 @@ public class FleetDeploymentActivity extends Activity
 
     private void displayDebugInfo() {
         TextView debugText = (TextView)findViewById(R.id.debug_text);
-        ImageView seaGrid = (ImageView)findViewById(R.id.imageView);
+        GraphicalDeploymentView seaGrid = (GraphicalDeploymentView)findViewById(R.id.fleet_deployment);
 
-        debugText.setText("Grid: " + seaGrid.getBottom() + ", W: " + seaGrid.getWidth());
+        debugText.setText("M: " + seaGrid.getMeasuredWidth() + ", W: " + seaGrid.getSpecMode());
     }
 }

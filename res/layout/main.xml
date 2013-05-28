@@ -5,29 +5,34 @@
               android:layout_height="fill_parent"
               android:clickable="false"
               android:focusable="false"
-              android:focusableInTouchMode="false">
+              android:focusableInTouchMode="false"
+              android:background="@drawable/own_sea">
     <TextView
-            android:id="@+id/ship_count"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="You have 0 ships to place"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/own_sea"
-             />
+        android:id="@+id/ship_count"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="You have 0 ships to place"
+        android:textColor="#FFFFFF"
+        />
     <TextView
-            android:id="@+id/debug_text"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Touch coords: "
-            android:textColor="#FFF"
-            android:background="@drawable/own_sea"
-            />
-    <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/imageView"
-            android:background="@drawable/own_sea"
-            />
+        android:id="@+id/debug_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Touch coords: "
+        android:textColor="#FFF"
+        />
+    <com.cjra.battleship_project.GraphicalDeploymentView
+        android:id="@+id/fleet_deployment"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        />
+    <TextView
+        android:id="@+id/bottom_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Bottom Text"
+        android:textColor="#FFF"
+        />
 
 </LinearLayout>
-
