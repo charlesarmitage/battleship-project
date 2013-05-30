@@ -3,7 +3,6 @@ package com.cjra.battleship_project;
 import android.content.Context;
 import android.graphics.*;
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
@@ -58,7 +57,7 @@ public class GraphicalDeploymentView extends ImageView {
     }
 
     private void drawTouchPoints(Canvas canvas) {
-        OvalShape circle = new OvalShape();
+        RingShape circle = new RingShape();
         ShapeDrawable touch = new ShapeDrawable(circle);
         touch.getPaint().setColor(Color.WHITE);
 
