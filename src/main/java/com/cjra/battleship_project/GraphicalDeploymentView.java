@@ -2,8 +2,15 @@ package com.cjra.battleship_project;
 
 import android.content.Context;
 import android.graphics.*;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Android view for fleet deployment.
@@ -13,6 +20,9 @@ public class GraphicalDeploymentView extends ImageView {
     private static final int GRID_BOARDER = 10;
     private String mode = "";
     private int cellSize = 0;
+    private List<Point> touchPoints = new ArrayList<Point>();
+    private TextView debugText = null;
+    private GraphicalGridDrawable gridDrawable = new GraphicalGridDrawable();
 
     public GraphicalDeploymentView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,14 +49,42 @@ public class GraphicalDeploymentView extends ImageView {
     }
 
     protected void onDraw(Canvas canvas){
-        GraphicalGridDrawable grid = new GraphicalGridDrawable();
         // TODO: Could sizing be derived from setBounds?
-        grid.setSideLength(getMeasuredWidth());
-        grid.setCellSize(cellSize);
-        grid.draw(canvas);
+        gridDrawable.setSideLength(getMeasuredWidth());
+        gridDrawable.setCellSize(cellSize);
+        gridDrawable.draw(canvas);
+
+        drawTouchPoints(canvas);
+    }
+
+    private void drawTouchPoints(Canvas canvas) {
+        OvalShape circle = new OvalShape();
+        ShapeDrawable touch = new ShapeDrawable(circle);
+        touch.getPaint().setColor(Color.WHITE);
+
+        for(Point cell : touchPoints) {
+            Rect bounds = gridDrawable.getCellBounds(cell);
+            touch.setBounds(bounds);
+            touch.draw(canvas);
+        }
     }
 
     public String getSpecMode() {
         return mode;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        Point cell = gridDrawable.getCellCoordinates((int)event.getX(), (int)event.getY());
+        touchPoints.add(cell);
+        if(debugText != null){
+            debugText.setText("CS: " + cellSize + ", X: " + cell.x + ", Y:" + cell.y);
+        }
+        invalidate();
+        return true;
+    }
+
+    public void setDebugText(TextView text){
+        debugText = text;
     }
 }

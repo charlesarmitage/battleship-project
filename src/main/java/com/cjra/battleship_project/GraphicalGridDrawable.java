@@ -74,4 +74,16 @@ public class GraphicalGridDrawable extends ShapeDrawable {
         boarderRight.addRect(sideLength - GRID_BOARDER, 0, sideLength, sideLength, Path.Direction.CW);
         canvas.drawPath(boarderRight, paint);
     }
+
+    public Point getCellCoordinates(int viewX, int viewY) {
+        int x = (viewX - 10) / cellSize;
+        int y = (viewY - 10) / cellSize;
+        return new Point(x, y);
+    }
+
+    public Rect getCellBounds(Point cell) {
+        int offsetX = (cell.x*cellSize) + 11;
+        int offsetY = (cell.y*cellSize) + 11;
+        return new Rect(offsetX + 5, offsetY + 5, cellSize + offsetX - 5, cellSize + offsetY - 5);
+    }
 }

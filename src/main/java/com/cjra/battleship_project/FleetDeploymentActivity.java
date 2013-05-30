@@ -32,9 +32,12 @@ public class FleetDeploymentActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        ImageView seaGrid = (ImageView)findViewById(R.id.fleet_deployment);
+        GraphicalDeploymentView seaGrid = (GraphicalDeploymentView)findViewById(R.id.fleet_deployment);
         seaGrid.addOnLayoutChangeListener(this);
         seaGrid.setOnTouchListener(this);
+
+        TextView debug = (TextView)findViewById(R.id.bottom_text);
+        seaGrid.setDebugText(debug);
     }
 
     @Override
