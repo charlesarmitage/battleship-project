@@ -76,8 +76,8 @@ public class GraphicalGridDrawable extends ShapeDrawable {
     }
 
     public Point getCellCoordinates(int viewX, int viewY) {
-        int x = (viewX - 10) / cellSize;
-        int y = (viewY - 10) / cellSize;
+        int x = (viewX - GRID_BOARDER) / cellSize;
+        int y = (viewY - GRID_BOARDER) / cellSize;
         return new Point(x, y);
     }
 
