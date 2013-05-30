@@ -8,6 +8,7 @@ import android.graphics.drawable.ShapeDrawable;
  */
 public class GraphicalGridDrawable extends ShapeDrawable {
     private static final int GRID_BOARDER = 10;
+    private static final int GRID_SIZE = 9;
     private int sideLength = 0;
     private int cellSize = 0;
 
@@ -40,7 +41,7 @@ public class GraphicalGridDrawable extends ShapeDrawable {
     private void addHorizontaLines(Path gridLines) {
         RectF horizontalLine = new RectF(0, 0, sideLength, 2);
         horizontalLine.offset(0, GRID_BOARDER);
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < GRID_SIZE; i++){
             horizontalLine.offset(0, cellSize);
             gridLines.addRect(horizontalLine, Path.Direction.CW);
         }
@@ -49,7 +50,7 @@ public class GraphicalGridDrawable extends ShapeDrawable {
     private void addVerticalLines(Path gridLines) {
         RectF verticalLine = new RectF(0, 0, 2, sideLength);
         verticalLine.offset(GRID_BOARDER, 0);
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < GRID_SIZE; i++){
             verticalLine.offset(cellSize, 0);
             gridLines.addRect(verticalLine, Path.Direction.CW);
         }
@@ -82,8 +83,9 @@ public class GraphicalGridDrawable extends ShapeDrawable {
     }
 
     public Rect getCellBounds(Point cell) {
-        int offsetX = (cell.x*cellSize) + 11;
-        int offsetY = (cell.y*cellSize) + 11;
-        return new Rect(offsetX + 5, offsetY + 5, cellSize + offsetX - 5, cellSize + offsetY - 5);
+        int offsetX = (cell.x*cellSize) + GRID_BOARDER + 1;
+        int offsetY = (cell.y*cellSize) + GRID_BOARDER + 1;
+        int CELL_MARGIN = GRID_BOARDER / 2;
+        return new Rect(offsetX + CELL_MARGIN, offsetY + CELL_MARGIN, cellSize + offsetX - CELL_MARGIN, cellSize + offsetY - CELL_MARGIN);
     }
 }
