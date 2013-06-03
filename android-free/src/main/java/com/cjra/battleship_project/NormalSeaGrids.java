@@ -6,4 +6,14 @@ public class NormalSeaGrids implements DeploymentModel {
     public int numberOfAvailableShips() {
         return 1;
     }
+
+    @Override
+    public int width() {
+        return 10;
+    }
+
+    @Override
+    public int height() {
+        return 10;
+    }
 }
