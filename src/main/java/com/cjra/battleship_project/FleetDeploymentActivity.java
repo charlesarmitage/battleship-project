@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -16,7 +15,7 @@ public class FleetDeploymentActivity extends Activity
         View.OnLayoutChangeListener {
 
     private RendersView battleshipGame;
-    private OwnSeaGridModel seaGrids;
+    private DeploymentModel seaGrids;
 
     public FleetDeploymentActivity(){
         seaGrids = new NormalSeaGrids();
