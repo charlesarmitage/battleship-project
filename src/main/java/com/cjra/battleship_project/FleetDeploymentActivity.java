@@ -6,23 +6,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cjra.battleships.DeploymentController;
+import com.cjra.battleships.DeploymentModel;
+import com.cjra.battleships.DeploymentView;
+import com.cjra.battleships.Positionable;
+import com.cjra.battleships.ShipDeployment;
+import com.cjra.battleships.ShipType;
+
+import java.util.Collection;
+
 /**
  * Default Battleship activity
  */
 public class FleetDeploymentActivity extends Activity
-        implements FleetDeploymentView,
+        implements DeploymentView,
         View.OnTouchListener,
         View.OnLayoutChangeListener {
 
-    private RendersView battleshipGame;
+    private ShipDeployment battleshipGame;
     private DeploymentModel seaGrids;
 
     public FleetDeploymentActivity(){
-        seaGrids = new NormalSeaGrids();
-        battleshipGame = new OwnSeaGridController(seaGrids, this);
+        seaGrids = new DeploymentModel();
+        battleshipGame = new DeploymentController(this, seaGrids);
     }
 
-    public FleetDeploymentActivity(RendersView view) {
+    public FleetDeploymentActivity(ShipDeployment view) {
         battleshipGame = view;
     }
 
@@ -42,10 +51,9 @@ public class FleetDeploymentActivity extends Activity
     @Override
     public void onResume(){
         super.onResume();
-        battleshipGame.render();
+        battleshipGame.refresh();
     }
 
-    @Override
     public void setNumberOfAvailableShips(int numberOfAvailableShips) {
         if(numberOfAvailableShips < 0)
             throw new ImplementationError(
@@ -58,10 +66,6 @@ public class FleetDeploymentActivity extends Activity
 
         TextView shipCountText = (TextView)findViewById( R.id.ship_count );
         shipCountText.setText(shipsText);
-    }
-
-    @Override
-    public void displayFleetGrid() {
     }
 
     @Override
@@ -81,5 +85,35 @@ public class FleetDeploymentActivity extends Activity
         GraphicalDeploymentView seaGrid = (GraphicalDeploymentView)findViewById(R.id.fleet_deployment);
 
         debugText.setText("M: " + seaGrid.getMeasuredWidth() + ", W: " + seaGrid.getSpecMode());
+    }
+
+    @Override
+    public void displaySelection(Positionable selection) {
+
+    }
+
+    @Override
+    public void displayShips(Collection<? extends Positionable> deployedShips) {
+
+    }
+
+    @Override
+    public void displayAvailableShips(Collection<ShipType> availableShips) {
+
+    }
+
+    @Override
+    public void offerShipPlacement(ShipType ship) {
+
+    }
+
+    @Override
+    public void offerGameStart() {
+
+    }
+
+    @Override
+    public void refreshView() {
+
     }
 }

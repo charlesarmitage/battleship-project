@@ -22,6 +22,7 @@
     <orderEntry type="library" scope="TEST" name="robolectric-2.0-rc1" level="project" />
     <orderEntry type="jdk" jdkName="Android 4.2.2 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="battleship-game" />
   </component>
 </module>
 

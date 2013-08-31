@@ -1,6 +1,9 @@
 package com.cjra.battleship_project;
 
 import android.widget.TextView;
+
+import com.cjra.battleships.ShipDeployment;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -35,13 +38,13 @@ public class FleetDeploymentActivityTests {
     }
 
     @Test
-    public void RendersGameWhenActivityResumed(){
-        RendersView view = mock(RendersView.class);
+    public void RefreshesGameWhenActivityResumed(){
+        ShipDeployment view = mock(ShipDeployment.class);
         FleetDeploymentActivity activity = new FleetDeploymentActivity(view);
 
         activity.onCreate(null);
         activity.onResume();
 
-        verify(view).render();
+        verify(view).refresh();
     }
 }
