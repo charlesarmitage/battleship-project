@@ -21,7 +21,7 @@ public class GraphicalDeploymentView extends ImageView {
     private static final int GRID_BOARDER = 10;
     private String mode = "";
     private int cellSize = 0;
-    private List<Point> touchPoints = new ArrayList<Point>();
+    private List<Point> selectionPoints = new ArrayList<Point>();
     private TextView debugText = null;
     private GraphicalGridDrawable gridDrawable = new GraphicalGridDrawable();
 
@@ -55,15 +55,15 @@ public class GraphicalDeploymentView extends ImageView {
         gridDrawable.setCellSize(cellSize);
         gridDrawable.draw(canvas);
 
-        drawTouchPoints(canvas);
+        drawSelectionPoints(canvas);
     }
 
-    private void drawTouchPoints(Canvas canvas) {
+    private void drawSelectionPoints(Canvas canvas) {
         RingShape circle = new RingShape();
         ShapeDrawable touch = new ShapeDrawable(circle);
         touch.getPaint().setColor(Color.WHITE);
 
-        for(Point cell : touchPoints) {
+        for(Point cell : selectionPoints) {
             Rect bounds = gridDrawable.getCellBounds(cell);
             touch.setBounds(bounds);
             touch.draw(canvas);
@@ -85,19 +85,25 @@ public class GraphicalDeploymentView extends ImageView {
     }
 
     public void displaySelection(List<Position> positions) {
-        String text = "Sel: ";
+        printSelectionDebugText(positions);
 
-        touchPoints.clear();
+        selectionPoints.clear();
         for(Position position : positions){
             Point point = new Point(position.x, position.y);
-            touchPoints.add(point);
+            selectionPoints.add(point);
+        }
+
+        invalidate();
+    }
+
+    private void printSelectionDebugText(List<Position> positions) {
+        String text = "Sel: ";
+        for(Position position : positions){
             text += "(" + position.x + ", " + position.y + "),";
         }
 
         if(debugText != null){
             debugText.setText(text);
         }
-
-        invalidate();
     }
 }
