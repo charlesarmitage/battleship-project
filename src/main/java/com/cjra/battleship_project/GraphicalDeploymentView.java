@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cjra.battleships.Position;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,18 +74,30 @@ public class GraphicalDeploymentView extends ImageView {
         return mode;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        Point cell = gridDrawable.getCellCoordinates((int)event.getX(), (int)event.getY());
-        touchPoints.add(cell);
-        if(debugText != null){
-            debugText.setText("CS: " + cellSize + ", X: " + cell.x + ", Y:" + cell.y);
-        }
-        invalidate();
-        return true;
-    }
-
     public void setDebugText(TextView text){
         debugText = text;
+    }
+
+    public Position convertToPosition(MotionEvent event) {
+        Point cell = gridDrawable.getCellCoordinates((int)event.getX(), (int)event.getY());
+        Position position = new Position(cell.x, cell.y);
+        return position;
+    }
+
+    public void displaySelection(List<Position> positions) {
+        String text = "Sel: ";
+
+        touchPoints.clear();
+        for(Position position : positions){
+            Point point = new Point(position.x, position.y);
+            touchPoints.add(point);
+            text += "(" + position.x + ", " + position.y + "),";
+        }
+
+        if(debugText != null){
+            debugText.setText(text);
+        }
+
+        invalidate();
     }
 }

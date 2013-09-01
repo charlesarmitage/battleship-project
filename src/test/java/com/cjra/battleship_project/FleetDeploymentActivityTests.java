@@ -16,28 +16,6 @@ import static org.mockito.Mockito.verify;
 public class FleetDeploymentActivityTests {
 
     @Test
-    public void DisplaysCorrectNumberOfShipsTextForDeployment(){
-        FleetDeploymentActivity activity = new FleetDeploymentActivity();
-        activity.onCreate(null);
-
-        activity.setNumberOfAvailableShips(12);
-
-        TextView text = (TextView)activity.findViewById(R.id.ship_count);
-
-        assertEquals("You have 12 ships to place.\n" +
-                    "Touch grid to place ships.", text.getText());
-    }
-
-
-    @Test(expected = ImplementationError.class)
-    public void ThrowsWhenNegativeNumberOfShipsAvailable(){
-        FleetDeploymentActivity activity = new FleetDeploymentActivity();
-        activity.onCreate(null);
-
-        activity.setNumberOfAvailableShips(-1);
-    }
-
-    @Test
     public void RefreshesGameWhenActivityResumed(){
         ShipDeployment view = mock(ShipDeployment.class);
         FleetDeploymentActivity activity = new FleetDeploymentActivity(view);
