@@ -1,11 +1,11 @@
 package com.cjra.battleship_project;
 
 import android.app.Activity;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.cjra.battleships.DeploymentController;
@@ -16,9 +16,7 @@ import com.cjra.battleships.Positionable;
 import com.cjra.battleships.ShipDeployment;
 import com.cjra.battleships.ShipType;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Default Battleship activity
@@ -100,33 +98,20 @@ public class FleetDeploymentActivity extends Activity
 
     @Override
     public void displayAvailableShips(Collection<ShipType> availableShips) {
-        String shipText = "Available ships: ";
+        String shipText = "Available ships:  ";
         for(ShipType ship : availableShips){
-            switch (ship){
-                case PATROL_BOAT:
-                    shipText += "Patrol Boat, ";
-                    break;
-                case DESTROYER:
-                    shipText += "Destroyer, ";
-                    break;
-                case BATTLESHIP:
-                    shipText += "Battleship, ";
-                    break;
-                case AIRCRAFT_CARRIER:
-                    shipText += "Carrier, ";
-                    break;
-                default:
-                    break;
-            }
+            shipText += ShipTypeToString(ship);
+            shipText += ", ";
         }
 
         TextView shipTextBox = (TextView)findViewById(R.id.available_ships);
-        shipTextBox.setText(shipText);
+        shipTextBox.setText(shipText.substring(0, shipText.length() - 2));
     }
 
     @Override
     public void offerShipPlacement(ShipType ship) {
-
+        Button actionButton = (Button)findViewById(R.id.deployment_action_button);
+        actionButton.setText("Place " + ShipTypeToString(ship));
     }
 
     @Override
@@ -137,5 +122,26 @@ public class FleetDeploymentActivity extends Activity
     @Override
     public void refreshView() {
 
+    }
+
+    private String ShipTypeToString(ShipType ship){
+        String text = "";
+        switch (ship){
+            case PATROL_BOAT:
+                text += "Patrol Boat";
+                break;
+            case DESTROYER:
+                text += "Destroyer";
+                break;
+            case BATTLESHIP:
+                text += "Battleship";
+                break;
+            case AIRCRAFT_CARRIER:
+                text += "Carrier";
+                break;
+            default:
+                break;
+        }
+        return text;
     }
 }
