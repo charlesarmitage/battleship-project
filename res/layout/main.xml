@@ -8,25 +8,28 @@
               android:focusableInTouchMode="false"
               android:background="@drawable/blue_sea">
     <TextView
-        android:id="@+id/ship_count"
+        android:id="@+id/available_ships"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="You have 0 ships to place"
+        android:text="Available ships: "
         android:textColor="#FFFFFF"
         />
-    <TextView
-        android:id="@+id/debug_text"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Touch coords: "
-        android:textColor="#FFF"
-        />
+
     <com.cjra.battleship_project.GraphicalDeploymentView
         android:id="@+id/fleet_deployment"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="center_horizontal"
         />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="..."
+        android:id="@+id/deployment_action_button"
+        android:layout_gravity="left|center_vertical" />
+
     <TextView
         android:id="@+id/bottom_text"
         android:layout_width="fill_parent"
@@ -35,4 +38,11 @@
         android:textColor="#FFF"
         />
 
+    <TextView
+        android:id="@+id/debug_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Touch coords: "
+        android:textColor="#FFF"
+        android:layout_gravity="left|center_vertical" />
 </LinearLayout>

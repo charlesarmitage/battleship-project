@@ -100,7 +100,28 @@ public class FleetDeploymentActivity extends Activity
 
     @Override
     public void displayAvailableShips(Collection<ShipType> availableShips) {
+        String shipText = "Available ships: ";
+        for(ShipType ship : availableShips){
+            switch (ship){
+                case PATROL_BOAT:
+                    shipText += "Patrol Boat, ";
+                    break;
+                case DESTROYER:
+                    shipText += "Destroyer, ";
+                    break;
+                case BATTLESHIP:
+                    shipText += "Battleship, ";
+                    break;
+                case AIRCRAFT_CARRIER:
+                    shipText += "Carrier, ";
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        TextView shipTextBox = (TextView)findViewById(R.id.available_ships);
+        shipTextBox.setText(shipText);
     }
 
     @Override
