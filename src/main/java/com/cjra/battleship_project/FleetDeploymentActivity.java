@@ -2,7 +2,6 @@ package com.cjra.battleship_project;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -24,15 +23,17 @@ import java.util.Collection;
 public class FleetDeploymentActivity extends Activity
         implements DeploymentView,
         View.OnTouchListener,
-        View.OnLayoutChangeListener {
+        View.OnLayoutChangeListener,
+        View.OnClickListener {
 
     private ShipDeployment battleshipGame;
-    private DeploymentModel seaGrids;
-    private GraphicalDeploymentView seaGrid;
+    private DeploymentModel deploymentModel;
+    private GraphicalDeploymentView graphicalGrid;
+    private ShipType offeredShip = ShipType.NONE;
 
     public FleetDeploymentActivity(){
-        seaGrids = new DeploymentModel();
-        battleshipGame = new DeploymentController(this, seaGrids);
+        deploymentModel = new DeploymentModel();
+        battleshipGame = new DeploymentController(this, deploymentModel);
     }
 
     public FleetDeploymentActivity(ShipDeployment view) {
@@ -44,12 +45,15 @@ public class FleetDeploymentActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        seaGrid = (GraphicalDeploymentView)findViewById(R.id.fleet_deployment);
-        seaGrid.addOnLayoutChangeListener(this);
-        seaGrid.setOnTouchListener(this);
+        graphicalGrid = (GraphicalDeploymentView)findViewById(R.id.fleet_deployment);
+        graphicalGrid.addOnLayoutChangeListener(this);
+        graphicalGrid.setOnTouchListener(this);
+
+        Button actionButton = (Button)findViewById((R.id.deployment_action_button));
+        actionButton.setOnClickListener(this);
 
         TextView debug = (TextView)findViewById(R.id.bottom_text);
-        seaGrid.setDebugText(debug);
+        graphicalGrid.setDebugText(debug);
 
         battleshipGame.resetGrid();
     }
@@ -69,7 +73,7 @@ public class FleetDeploymentActivity extends Activity
         TextView debugText = (TextView)findViewById(R.id.debug_text);
         debugText.setText("Touch event: " + event.getX() + ", " + event.getY());
 
-        Position position = seaGrid.convertToPosition(event);
+        Position position = graphicalGrid.convertToPosition(event);
         battleshipGame.selectCell(position.x, position.y);
         return true;
     }
@@ -79,16 +83,9 @@ public class FleetDeploymentActivity extends Activity
         displayDebugInfo();
     }
 
-    private void displayDebugInfo() {
-        TextView debugText = (TextView)findViewById(R.id.debug_text);
-        GraphicalDeploymentView seaGrid = (GraphicalDeploymentView)findViewById(R.id.fleet_deployment);
-
-        debugText.setText("M: " + seaGrid.getMeasuredWidth() + ", W: " + seaGrid.getSpecMode());
-    }
-
     @Override
     public void displaySelection(Positionable selection) {
-        seaGrid.displaySelection(selection.getPositions());
+        graphicalGrid.displaySelection(selection.getPositions());
     }
 
     @Override
@@ -100,7 +97,7 @@ public class FleetDeploymentActivity extends Activity
     public void displayAvailableShips(Collection<ShipType> availableShips) {
         String shipText = "Available ships:  ";
         for(ShipType ship : availableShips){
-            shipText += ShipTypeToString(ship);
+            shipText += shipTypeToString(ship);
             shipText += ", ";
         }
 
@@ -111,7 +108,8 @@ public class FleetDeploymentActivity extends Activity
     @Override
     public void offerShipPlacement(ShipType ship) {
         Button actionButton = (Button)findViewById(R.id.deployment_action_button);
-        actionButton.setText("Place " + ShipTypeToString(ship));
+        actionButton.setText("Place " + shipTypeToString(ship));
+        offeredShip = ship;
     }
 
     @Override
@@ -120,11 +118,18 @@ public class FleetDeploymentActivity extends Activity
     }
 
     @Override
+    public void onClick(View view) {
+        battleshipGame.placeShip(offeredShip);
+        TextView debugText = (TextView)findViewById(R.id.debug_text);
+        debugText.setText("Placed: " + shipTypeToString(offeredShip));
+    }
+
+    @Override
     public void refreshView() {
 
     }
 
-    private String ShipTypeToString(ShipType ship){
+    private String shipTypeToString(ShipType ship){
         String text = "";
         switch (ship){
             case PATROL_BOAT:
@@ -143,5 +148,12 @@ public class FleetDeploymentActivity extends Activity
                 break;
         }
         return text;
+    }
+
+    private void displayDebugInfo() {
+        TextView debugText = (TextView)findViewById(R.id.debug_text);
+        GraphicalDeploymentView seaGrid = (GraphicalDeploymentView)findViewById(R.id.fleet_deployment);
+
+        debugText.setText("M: " + seaGrid.getMeasuredWidth() + ", W: " + seaGrid.getSpecMode());
     }
 }
