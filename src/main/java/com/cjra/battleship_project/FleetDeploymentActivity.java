@@ -109,6 +109,13 @@ public class FleetDeploymentActivity extends Activity
     public void offerShipPlacement(ShipType ship) {
         Button actionButton = (Button)findViewById(R.id.deployment_action_button);
         actionButton.setText("Place " + shipTypeToString(ship));
+        if(ship == ShipType.NONE){
+            actionButton.setVisibility(View.INVISIBLE);
+        }
+        else{
+            actionButton.setVisibility(View.VISIBLE);
+        }
+
         offeredShip = ship;
     }
 
