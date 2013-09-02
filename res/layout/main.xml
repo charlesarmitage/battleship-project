@@ -24,11 +24,11 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
+        android:id="@+id/deployment_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="..."
-        android:id="@+id/deployment_action_button"
-        android:layout_gravity="left|center_vertical" />
+        android:background="@drawable/battle_button"/>
 
     <TextView
         android:id="@+id/bottom_text"
