@@ -88,4 +88,11 @@ public class GraphicalGridDrawable extends ShapeDrawable {
         int CELL_MARGIN = GRID_BOARDER / 2;
         return new Rect(offsetX + CELL_MARGIN, offsetY + CELL_MARGIN, cellSize + offsetX - CELL_MARGIN, cellSize + offsetY - CELL_MARGIN);
     }
+
+    public Rect getCellBoundsWithoutMargin(Point cell) {
+        int offsetX = (cell.x*cellSize) + GRID_BOARDER;
+        int offsetY = (cell.y*cellSize) + GRID_BOARDER;
+        int CELL_MARGIN = 0;
+        return new Rect(offsetX + CELL_MARGIN, offsetY + CELL_MARGIN, cellSize + offsetX - CELL_MARGIN, cellSize + offsetY - CELL_MARGIN);
+    }
 }
