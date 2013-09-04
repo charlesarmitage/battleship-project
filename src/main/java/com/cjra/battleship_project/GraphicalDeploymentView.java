@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cjra.battleships.Position;
+import com.cjra.battleships.Positionable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,6 +26,7 @@ public class GraphicalDeploymentView extends ImageView {
     private List<Point> selectionPoints = new ArrayList<Point>();
     private TextView debugText = null;
     private GraphicalGridDrawable gridDrawable = new GraphicalGridDrawable();
+    private Collection<Positionable> ships = new ArrayList<Positionable>();
 
     public GraphicalDeploymentView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -56,6 +59,10 @@ public class GraphicalDeploymentView extends ImageView {
         gridDrawable.draw(canvas);
 
         drawSelectionPoints(canvas);
+
+        for(Positionable ship : ships){
+            drawShip(ship,canvas);
+        }
     }
 
     private void drawSelectionPoints(Canvas canvas) {
@@ -67,6 +74,22 @@ public class GraphicalDeploymentView extends ImageView {
             Rect bounds = gridDrawable.getCellBounds(cell);
             touch.setBounds(bounds);
             touch.draw(canvas);
+        }
+    }
+
+    private void drawShip(Positionable ship, Canvas canvas) {
+        ShipBodyShape body = new ShipBodyShape(getResources());
+        if(ship.isVertical()){
+            body.setVertical();
+        }
+        ShapeDrawable shipDrawable = new ShapeDrawable(body);
+        shipDrawable.getPaint().setColor(Color.WHITE);
+
+        for(Position position : ship.getPositions()){
+            Point point = new Point(position.x, position.y);
+            Rect bounds = gridDrawable.getCellBoundsWithoutMargin(point);
+            shipDrawable.setBounds(bounds);
+            shipDrawable.draw(canvas);
         }
     }
 
@@ -105,5 +128,9 @@ public class GraphicalDeploymentView extends ImageView {
         if(debugText != null){
             debugText.setText(text);
         }
+    }
+
+    public void displayShip(Collection<Positionable> shipPositions) {
+        ships = shipPositions;
     }
 }

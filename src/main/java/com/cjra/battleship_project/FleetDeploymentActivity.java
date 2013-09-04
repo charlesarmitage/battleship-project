@@ -16,6 +16,7 @@ import com.cjra.battleships.ShipDeployment;
 import com.cjra.battleships.ShipType;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Default Battleship activity
@@ -90,7 +91,7 @@ public class FleetDeploymentActivity extends Activity
 
     @Override
     public void displayShips(Collection<? extends Positionable> deployedShips) {
-
+            graphicalGrid.displayShip((Collection<Positionable>)deployedShips);
     }
 
     @Override
