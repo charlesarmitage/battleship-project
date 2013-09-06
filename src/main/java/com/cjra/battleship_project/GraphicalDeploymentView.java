@@ -82,10 +82,18 @@ public class GraphicalDeploymentView extends ImageView {
         if(ship.isVertical()){
             body.setVertical();
         }
-        ShapeDrawable shipDrawable = new ShapeDrawable(body);
-        shipDrawable.getPaint().setColor(Color.WHITE);
+        ShapeDrawable shipDrawable;
 
         for(Position position : ship.getPositions()){
+            if(position.equals(ship.start()) || position.equals(ship.end())){
+                shipDrawable = new ShapeDrawable(new ShipEndShape());
+                shipDrawable.getPaint().setColor(Color.WHITE);
+            }
+            else {
+                shipDrawable = new ShapeDrawable(body);
+                shipDrawable.getPaint().setColor(Color.WHITE);
+            }
+
             Point point = new Point(position.x, position.y);
             Rect bounds = gridDrawable.getCellBoundsWithoutMargin(point);
             shipDrawable.setBounds(bounds);

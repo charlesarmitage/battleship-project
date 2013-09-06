@@ -39,17 +39,16 @@ public class ShipBodyShape extends Shape {
             canvas.rotate((float)90.0);
         }
 
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(15);
-
-        canvas.drawLine(-1, height/4, width+1, height/4, paint);
-        canvas.drawLine(-1, (height/4)*3, width+1, (height/4)*3, paint);
-
         Paint fillPaint = new Paint();
         int blue = resources.getColor(R.color.seablue);
         fillPaint.setColor(blue);
         fillPaint.setStyle(Paint.Style.FILL);
         canvas.drawRect(-1, height/4, width+1, 3*(height/4), fillPaint);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(15);
+        canvas.drawLine(-1, height/4, width+1, height/4, paint);
+        canvas.drawLine(-1, (height/4)*3, width+1, (height/4)*3, paint);
 
         canvas.restore();
     }
