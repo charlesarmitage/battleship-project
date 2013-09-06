@@ -30,8 +30,6 @@ public class ShipBodyShape extends Shape {
         this.height = height;
     }
 
-
-
     @Override
     public void draw(Canvas canvas, Paint paint) {
 
