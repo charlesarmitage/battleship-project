@@ -111,7 +111,7 @@ public class FleetDeploymentActivity extends Activity
         Button actionButton = (Button)findViewById(R.id.deployment_action_button);
         actionButton.setText("Place " + shipTypeToString(ship));
         if(ship == ShipType.NONE){
-            actionButton.setVisibility(View.INVISIBLE);
+            actionButton.setVisibility(View.GONE);
         }
         else{
             actionButton.setVisibility(View.VISIBLE);
@@ -122,7 +122,10 @@ public class FleetDeploymentActivity extends Activity
 
     @Override
     public void offerGameStart() {
-
+        Button actionButton = (Button)findViewById(R.id.deployment_action_button);
+        actionButton.setVisibility(View.GONE);
+        Button startButton = (Button)findViewById(R.id.game_start_button);
+        startButton.setVisibility(View.VISIBLE);
     }
 
     @Override

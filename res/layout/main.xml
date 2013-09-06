@@ -31,7 +31,15 @@
         android:text="..."
         android:background="@drawable/battle_button"
         android:visibility="invisible"/>
-
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:id="@+id/game_start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:text="Start Game"
+        android:background="@drawable/battle_button"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/bottom_text"
         android:layout_width="fill_parent"
