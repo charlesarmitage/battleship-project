@@ -15,13 +15,15 @@ public class ShipBodyShape extends Shape {
     private float width;
     private float height;
     private boolean isVertical = false;
+    private GridShapeRotator rotator = new GridShapeRotator();
+    private float degrees = (float)0.0;
 
     public ShipBodyShape(Resources res){
         this.resources = res;
     }
 
     public void setVertical(){
-        isVertical = true;
+        degrees = (float)90.0;
     }
 
     protected void onResize(float width, float height){
@@ -32,12 +34,7 @@ public class ShipBodyShape extends Shape {
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
-
-        canvas.save();
-        if(isVertical){
-            canvas.translate(width+1, (float)0.0);
-            canvas.rotate((float)90.0);
-        }
+        rotator.rotateCanvas(canvas, degrees, width);
 
         Paint fillPaint = new Paint();
         int blue = resources.getColor(R.color.seablue);
@@ -50,6 +47,6 @@ public class ShipBodyShape extends Shape {
         canvas.drawLine(-1, height/4, width+1, height/4, paint);
         canvas.drawLine(-1, (height/4)*3, width+1, (height/4)*3, paint);
 
-        canvas.restore();
+        rotator.restoreCanvas(canvas);
     }
 }

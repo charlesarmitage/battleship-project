@@ -13,6 +13,7 @@ public class ShipEndShape extends Shape {
 
     private float width;
     private float height;
+    private GridShapeRotator rotator = new GridShapeRotator();
 
     protected void onResize(float width, float height){
         super.onResize(width, height);
@@ -22,11 +23,16 @@ public class ShipEndShape extends Shape {
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
+
+        rotator.rotateCanvas(canvas, (float)0.0, width);
+
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(15);
 
         drawTopCurve(canvas, paint);
         drawBottomCurve(canvas, paint);
+
+        rotator.restoreCanvas(canvas);
     }
 
     private void drawTopCurve(Canvas canvas, Paint paint) {
