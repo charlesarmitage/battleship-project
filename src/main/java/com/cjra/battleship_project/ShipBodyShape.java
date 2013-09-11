@@ -2,9 +2,7 @@ package com.cjra.battleship_project;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.RotateDrawable;
 import android.graphics.drawable.shapes.Shape;
 
 /**
@@ -34,7 +32,7 @@ public class ShipBodyShape extends Shape {
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
-        rotator.rotateCanvas(canvas, degrees, width);
+        rotator.rotateCanvas(canvas, degrees, height, width);
 
         Paint fillPaint = new Paint();
         int blue = resources.getColor(R.color.seablue);

@@ -82,11 +82,29 @@ public class GraphicalDeploymentView extends ImageView {
         if(ship.isVertical()){
             body.setVertical();
         }
-        ShapeDrawable shipDrawable;
 
         for(Position position : ship.getPositions()){
-            if(position.equals(ship.start()) || position.equals(ship.end())){
-                shipDrawable = new ShapeDrawable(new ShipEndShape());
+            ShipEndShape shipEnd = new ShipEndShape();
+            ShapeDrawable shipDrawable;
+
+            if(position.equals(ship.start())){
+                if(ship.isVertical()){
+                    shipEnd.rotate(270);
+                }
+                else {
+                    shipEnd.rotate(180);
+                }
+                shipDrawable = new ShapeDrawable(shipEnd);
+                shipDrawable.getPaint().setColor(Color.WHITE);
+            }
+            else if(position.equals(ship.end())){
+                if(ship.isVertical()){
+                    shipEnd.rotate(90);
+                }
+                else {
+                    shipEnd.rotate(0);
+                }
+                shipDrawable = new ShapeDrawable(shipEnd);
                 shipDrawable.getPaint().setColor(Color.WHITE);
             }
             else {

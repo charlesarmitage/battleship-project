@@ -14,6 +14,7 @@ public class ShipEndShape extends Shape {
     private float width;
     private float height;
     private GridShapeRotator rotator = new GridShapeRotator();
+    private float degrees = (float)0.0;
 
     protected void onResize(float width, float height){
         super.onResize(width, height);
@@ -24,7 +25,7 @@ public class ShipEndShape extends Shape {
     @Override
     public void draw(Canvas canvas, Paint paint) {
 
-        rotator.rotateCanvas(canvas, (float)0.0, width);
+        rotator.rotateCanvas(canvas, degrees, height, width);
 
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(15);
@@ -51,5 +52,9 @@ public class ShipEndShape extends Shape {
         curve.moveTo(0, (int)(3*height/4));
         curve.quadTo(middle.x, middle.y, end.x, end.y);
         canvas.drawPath(curve, paint);
+    }
+
+    public void rotate(int degrees) {
+        this.degrees = (float)degrees;
     }
 }
