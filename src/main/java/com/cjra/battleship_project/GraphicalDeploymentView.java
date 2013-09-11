@@ -78,45 +78,67 @@ public class GraphicalDeploymentView extends ImageView {
     }
 
     private void drawShip(Positionable ship, Canvas canvas) {
-        ShipBodyShape body = new ShipBodyShape(getResources());
-        if(ship.isVertical()){
-            body.setVertical();
-        }
+
+        ShapeDrawable shipDrawable;
+        ShapeDrawable start = buildShipStart(ship);
+        ShapeDrawable end = buildShipEnd(ship);
 
         for(Position position : ship.getPositions()){
-            ShipEndShape shipEnd = new ShipEndShape();
-            ShapeDrawable shipDrawable;
 
             if(position.equals(ship.start())){
-                if(ship.isVertical()){
-                    shipEnd.rotate(270);
-                }
-                else {
-                    shipEnd.rotate(180);
-                }
-                shipDrawable = new ShapeDrawable(shipEnd);
-                shipDrawable.getPaint().setColor(Color.WHITE);
+                shipDrawable = start;
             }
             else if(position.equals(ship.end())){
-                if(ship.isVertical()){
-                    shipEnd.rotate(90);
-                }
-                else {
-                    shipEnd.rotate(0);
-                }
-                shipDrawable = new ShapeDrawable(shipEnd);
-                shipDrawable.getPaint().setColor(Color.WHITE);
+                shipDrawable = end;
             }
             else {
+                ShipBodyShape body = buildShipBodyShape(ship);
                 shipDrawable = new ShapeDrawable(body);
-                shipDrawable.getPaint().setColor(Color.WHITE);
             }
 
             Point point = new Point(position.x, position.y);
             Rect bounds = gridDrawable.getCellBoundsWithoutMargin(point);
+
+            shipDrawable.getPaint().setColor(Color.WHITE);
             shipDrawable.setBounds(bounds);
             shipDrawable.draw(canvas);
         }
+    }
+
+    private ShapeDrawable buildShipStart(Positionable ship) {
+        ShipEndShape shipEnd = new ShipEndShape();
+
+        if(ship.isVertical()){
+            shipEnd.rotate(270);
+        }
+        else {
+            shipEnd.rotate(180);
+        }
+        ShapeDrawable shipDrawable = new ShapeDrawable(shipEnd);
+        shipDrawable.getPaint().setColor(Color.WHITE);
+        return shipDrawable;
+    }
+
+    private ShapeDrawable buildShipEnd(Positionable ship) {
+        ShipEndShape shipEnd = new ShipEndShape();
+
+        if(ship.isVertical()){
+            shipEnd.rotate(90);
+        }
+        else {
+            shipEnd.rotate(0);
+        }
+        ShapeDrawable shipDrawable = new ShapeDrawable(shipEnd);
+        shipDrawable.getPaint().setColor(Color.WHITE);
+        return shipDrawable;
+    }
+
+    private ShipBodyShape buildShipBodyShape(Positionable ship) {
+        ShipBodyShape body = new ShipBodyShape(getResources());
+        if(ship.isVertical()){
+            body.setVertical();
+        }
+        return body;
     }
 
     public String getSpecMode() {
