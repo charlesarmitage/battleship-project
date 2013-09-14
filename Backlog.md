@@ -10,6 +10,6 @@ Backlog
     - ~~When user touches in empty square to mark four points in a straight line~~
     - ~~A place battleship option is displayed~~
 
-    - Given four marked points in line in grid
-    - When a user selects to place battleship
-    - A battleship is displayed on top of the four marked points
+    - ~~Given four marked points in line in grid~~
+    - ~~When a user selects to place battleship~~
+    - ~~A battleship is displayed on top of the four marked points~~
