@@ -8,12 +8,12 @@
               android:focusableInTouchMode="false"
               android:background="@drawable/blue_sea">
     <TextView
-        android:id="@+id/available_ships"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Available ships: "
+        android:text="Fleet Deployment"
         android:textColor="#FFFFFF"
         />
+
 
     <com.cjra.battleship_project.GraphicalDeploymentView
         android:id="@+id/fleet_deployment"
@@ -22,37 +22,60 @@
         android:layout_gravity="center_horizontal"
         />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:id="@+id/deployment_action_button"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:id="@+id/game_start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="Start Game"
+            android:background="@drawable/battle_button"
+            android:visibility="invisible"/>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:id="@+id/deployment_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:text="..."
+            android:background="@drawable/battle_button"
+            android:visibility="invisible"/>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:id="@+id/reset_deployment_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_alignParentRight="true"
+            android:text="Reset"
+            android:background="@drawable/battle_button"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/available_ships"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:text="..."
-        android:background="@drawable/battle_button"
-        android:visibility="invisible"/>
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:id="@+id/game_start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:text="Start Game"
-        android:background="@drawable/battle_button"
-        android:visibility="gone"/>
+        android:text="Available ships: "
+        android:textColor="#FFFFFF"
+        />
+
     <TextView
         android:id="@+id/bottom_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Bottom Text"
         android:textColor="#FFF"
+        android:visibility="invisible"
         />
-
     <TextView
         android:id="@+id/debug_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Touch coords: "
         android:textColor="#FFF"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_gravity="left|center_vertical"
+        android:visibility="invisible"/>
 </LinearLayout>
