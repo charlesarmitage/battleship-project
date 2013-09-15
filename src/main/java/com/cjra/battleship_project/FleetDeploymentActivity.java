@@ -51,7 +51,20 @@ public class FleetDeploymentActivity extends Activity
         graphicalGrid.setOnTouchListener(this);
 
         Button actionButton = (Button)findViewById((R.id.deployment_action_button));
-        actionButton.setOnClickListener(this);
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                placeShipClick();
+            }
+        });
+
+        Button resetButton = (Button)findViewById(R.id.reset_deployment_button);
+        resetButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                battleshipGame.resetGrid();
+            }
+        });
 
         TextView debug = (TextView)findViewById(R.id.bottom_text);
         graphicalGrid.setDebugText(debug);
@@ -129,15 +142,14 @@ public class FleetDeploymentActivity extends Activity
     }
 
     @Override
-    public void onClick(View view) {
+    public void refreshView() {
+
+    }
+
+    private void placeShipClick() {
         battleshipGame.placeShip(offeredShip);
         TextView debugText = (TextView)findViewById(R.id.debug_text);
         debugText.setText("Placed: " + shipTypeToString(offeredShip));
-    }
-
-    @Override
-    public void refreshView() {
-
     }
 
     private String shipTypeToString(ShipType ship){
