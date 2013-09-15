@@ -3,7 +3,7 @@
           package="com.cjra.battleship_project"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="17"/>
+    <uses-sdk android:minSdkVersion="16"/>
     <application android:label="Battleships, Attack!" android:icon="@drawable/ic_launcher">
         <activity android:name=".FleetDeploymentActivity">
             <intent-filter>
