@@ -24,8 +24,7 @@ import java.util.List;
 public class FleetDeploymentActivity extends Activity
         implements DeploymentView,
         View.OnTouchListener,
-        View.OnLayoutChangeListener,
-        View.OnClickListener {
+        View.OnLayoutChangeListener {
 
     private ShipDeployment battleshipGame;
     private DeploymentModel deploymentModel;
@@ -50,7 +49,7 @@ public class FleetDeploymentActivity extends Activity
         graphicalGrid.addOnLayoutChangeListener(this);
         graphicalGrid.setOnTouchListener(this);
 
-        Button actionButton = (Button)findViewById((R.id.deployment_action_button));
+        Button actionButton = (Button)findViewById(R.id.deployment_action_button);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +62,14 @@ public class FleetDeploymentActivity extends Activity
             @Override
             public void onClick(View view) {
                 battleshipGame.resetGrid();
+            }
+        });
+
+        Button startButton = (Button)findViewById(R.id.game_start_button);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: Add game start functionality
             }
         });
 
